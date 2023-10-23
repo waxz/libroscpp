@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
     auto r = ros::Rate(1);
     std::cout << "ros start loop" << std::endl;
 
-    while (true){
+    while (ros::ok()){
         r.sleep();
     }
 
