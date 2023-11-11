@@ -1,0 +1,134 @@
+# This is a TOML document.
+
+[general]
+version = 1
+
+
+
+[mqtt.config]
+server = "127.0.0.1"
+port = 1883
+
+[mqtt.channel.channel_1]
+channel_type = "pub"
+topic_name = "hello"
+topic_type = "Array1024"
+bind = {}
+code = """
+#include <stdio.h>
+void fn(void* p){
+printf("hello world");
+}
+"""
+function = "fn"
+
+[mqtt.channel.channel_2]
+channel_type = "pub"
+topic_name = "hello"
+topic_type = "Array1024"
+bind = {}
+embeded_code = '''
+#include <stdio.h>
+extern Point p;
+
+void fn(){
+printf("hello world");
+}
+'''
+
+
+# http://wiki.ros.org/Remapping%20Arguments
+# config parameter will be passed to ros init function
+[ros.config]
+__name = "ros_helper_test"
+
+[ros.channel.scan_pub]
+channel_type = "pub"
+topic_name = "scan"
+topic_type = "LaserScan"
+qos_queue_size = 1
+
+[ros.channel.scan_sub]
+channel_type = "sub"
+topic_name = "scan"
+topic_type = "LaserScan"
+qos_queue_size = 10
+
+[ros.channel.twist_pub]
+channel_type = "pub"
+topic_name = "twist"
+topic_type = "Twist"
+qos_queue_size = 10
+
+[ros.channel.twist_sub]
+channel_type = "sub"
+topic_name = "twist"
+topic_type = "Twist"
+qos_queue_size = 10
+
+
+[ros.channel.uint8array_pub]
+channel_type = "pub"
+topic_name = "uint8array"
+topic_type = "UInt8MultiArray"
+qos_queue_size = 10
+
+[ros.channel.uint8array_sub]
+channel_type = "sub"
+topic_name = "uint8array"
+topic_type = "UInt8MultiArray"
+qos_queue_size = 10
+
+[ros.channel.uint16array_pub]
+channel_type = "pub"
+topic_name = "uint16array"
+topic_type = "UInt16MultiArray"
+qos_queue_size = 10
+
+[ros.channel.uint16array_sub]
+channel_type = "sub"
+topic_name = "uint16array"
+topic_type = "UInt16MultiArray"
+qos_queue_size = 10
+
+[ros.channel.tf_pub]
+channel_type = "pub"
+topic_name = "tf"
+topic_type = "tf"
+parent_frame = "map"
+child_frame = "odom"
+
+[ros.channel.tf_sub]
+channel_type = "sub"
+topic_name = "tf"
+topic_type = "tf"
+parent_frame = "map"
+child_frame = "odom"
+
+#OccupancyGrid
+[ros.channel.map_sub]
+channel_type = "sub"
+topic_name = "map"
+topic_type = "OccupancyGrid"
+qos_queue_size = 10
+
+
+[ros.channel.map_pub]
+channel_type = "pub"
+topic_name = "map"
+topic_type = "OccupancyGrid"
+qos_queue_size = 10
+
+#Odometry
+[ros.channel.odom_sub]
+channel_type = "sub"
+topic_name = "odom"
+topic_type = "Odometry"
+qos_queue_size = 10
+
+[ros.channel.odom_pub]
+channel_type = "pub"
+topic_name = "odom"
+topic_type = "Odometry"
+qos_queue_size = 10
+
