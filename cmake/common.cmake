@@ -19,7 +19,16 @@ SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 
 # fix ld: unrecognized option '--push-state--no-as-needed'
 # https://stackoverflow.com/questions/50024731/ld-unrecognized-option-push-state-no-as-needed
+
+# https://stackoverflow.com/questions/43632700/clang-and-fuse-ld-gold-results-in-many-unused-option-warnings
+# CMAKE_STATIC_LINKER_FLAGS, CMAKE_SHARED_LINKER_FLAGS, CMAKE_EXE_LINKER_FLAGS
+#set(CMAKE_STATIC_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=gold")
+#set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=gold")
 #set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=gold")
+
+# https://stackoverflow.com/questions/1867745/cmake-use-a-custom-linker
+# GCC isn't as flexible, its -fuse-ld only accepts a limited set of possible arguments. (They're listed in the gcc --help=common output, as of GCC 12.2.1 the list is: bfd, gold, lld, or mold.) It will invoke the first matching ld.foo executable it finds on the PATH
+
 
 
 
